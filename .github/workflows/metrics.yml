@@ -1,0 +1,18 @@
+name: Metrics
+on:
+  schedule:
+    - cron: "0 0 * * *"   # Runs every day at midnight UTC
+  workflow_dispatch:      # Allows manual triggering
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write       # To write the generated SVG file
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: 'github-metrics.svg'
+          template: classic
+          # Token intentionally omitted for now
+          config_timezone: Asia/Kolkata
